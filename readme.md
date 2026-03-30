@@ -1,265 +1,135 @@
-<h1 align="center">🎬 CineMatch</h1>
-<h3 align="center">A production-ready content-based movie recommendation engine</h3>
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python" />
-  <img src="https://img.shields.io/badge/scikit--learn-1.3-orange?style=flat-square&logo=scikit-learn" />
-  <img src="https://img.shields.io/badge/Deployed-Heroku-purple?style=flat-square&logo=heroku" />
-  <img src="https://img.shields.io/badge/NLP-TF--IDF-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" />
-</p>
-<p align="center">
-  <a href="YOUR_HEROKU_URL">🚀 Live Demo</a> •
-  <a href="#-how-it-works">How It Works</a> •
-  <a href="#%EF%B8%8F-installation">Quick Start</a> •
-  <a href="#%EF%B8%8F-architecture--workflow">Architecture</a>
-</p>
+<div align="center">
+  <h1>🎬 CINMATCH — Film Intelligence Engine</h1>
+  <p><strong>A production-ready, AI-powered content-based movie recommendation engine featuring a stunning custom UI.</strong></p>
+  
+  <p>
+    <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python" alt="Python" />
+    <img src="https://img.shields.io/badge/Streamlit-Framework-FF4B4B?style=for-the-badge&logo=streamlit" alt="Streamlit" />
+    <img src="https://img.shields.io/badge/scikit--learn-ML-orange?style=for-the-badge&logo=scikit-learn" alt="scikit-learn" />
+    <img src="https://img.shields.io/badge/NLP-TF--IDF-green?style=for-the-badge" alt="NLP" />
+  </p>
+</div>
 
-## 🔍 Overview
-CineMatch is a content-based movie recommendation system that suggests films based on their semantic similarity to a title you love. Rather than relying on user ratings or collaborative behavior, it analyzes movie metadata — genres, cast, crew, keywords, and plot overviews — to build a rich feature space and surface the most similar films using cosine similarity.
-Built end-to-end: from raw data ingestion and NLP preprocessing to a deployed, interactive web application — this project mirrors a real-world ML product pipeline.
+<br/>
 
-## 🚀 Live Demo
+<div align="center">
+  <img src="imageone.png" alt="CINMATCH Hero Interface" width="100%">
+</div>
 
-🌐 **Try it live →** [cinematch.herokuapp.com](https://cinematch.herokuapp.com) *(Update with your actual Heroku URL)*
+## 🌌 Overview
 
-Enter any movie title and get 5–10 intelligent recommendations in under a second.
-<!-- Show Image -->
+**CINMATCH** goes beyond standard recommendation scripts to offer a fully immersive movie discovery platform. It combines an advanced machine learning backend with a visually breathtaking, highly customized frontend designed in PyCharm and rendered via Streamlit.
 
-## ✨ Features
+By analyzing the semantic DNA of a film—its genres, cast, crew, keywords, and plot summary—CINMATCH maps the cinematic universe around your favorite movies to deliver uncanny, high-fidelity recommendations in milliseconds.
 
-- 🎯 **Smart Content Analysis** — Combines genres, cast, crew, keywords, and plot to build a holistic movie profile
-- ⚡ **Sub-second Recommendations** — Pre-computed similarity matrix enables near-instant results
-- 🧠 **NLP-Powered Matching** — TF-IDF vectorization extracts meaningful signal from unstructured text
-- 📐 **Cosine Similarity Engine** — Mathematically finds the closest movies in high-dimensional feature space
-- 🌐 **Live Web App** — Interactive Streamlit UI deployed on Heroku, accessible without any local setup
-- 🔧 **Modular Pipeline** — Cleanly separated preprocessing, modeling, and serving layers
-- 📦 **Serialized Model Artifacts** — Trained artifacts stored with pickle for efficient loading at inference time
+## ✨ Key Features
 
-## 🛠️ Tech Stack
+- **🧠 NLP-Powered Matching** — Uses advanced TF-IDF vectorization to extract meaningful signals from unstructured movie metadata.
+- **📐 High-Dimensional Cosine Similarity** — Mathematically calculates the distance between films in a 5,000+ dimensional feature space for hyper-accurate matching.
+- **⚡ Sub-second Inference** — Pre-computed similarity matrices allow for near-instant, real-time results without loading screens.
+- **🎨 Premium Custom UI** — Features a completely bespoke CSS architecture built on top of Streamlit. Includes glassmorphism, ambient glows, responsive poster grids, and fluid micro-animations.
+- **🌍 Dynamic API Integration** — Seamlessly hooks into the TMDB API to fetch live, high-resolution movie posters and metadata on the fly.
+- **🏗️ Modular Architecture** — Clean separation of concerns between data pipeline, ML training, artifact serialization (`.pkl`), and presentation layer (`app.py`).
 
-**Machine Learning & NLP**
-| Tool | Purpose |
-|------|---------|
-| `scikit-learn` | TF-IDF Vectorizer, cosine similarity computation |
-| `NLTK` | Text preprocessing, Porter stemming |
-| `pandas` / `numpy` | Data wrangling and matrix operations |
+<br/>
 
-**Backend & Serving**
-| Tool | Purpose |
-|------|---------|
-| `Streamlit` | Interactive web frontend |
-| `pickle` | Model serialization for fast loading |
-| `requests` | TMDB API integration for movie posters |
+<div align="center">
+  <img src="imagetwo.png" alt="CINMATCH Features Preview" width="100%">
+</div>
 
-**Deployment**
-| Tool | Purpose |
-|------|---------|
-| `Heroku` | Cloud deployment platform |
-| `gunicorn` | Production WSGI server |
-| `Procfile` | Heroku process configuration |
+## 🛠️ Technology Stack
 
-## 🏗️ Architecture / Workflow
+| Domain | Tools & Technologies |
+|--------|----------------------|
+| **Frontend UI** | Streamlit, Custom CSS3 (Glassmorphism, Grid/Flexbox), TMDB API |
+| **Machine Learning** | `scikit-learn` (TF-IDF Vectorizer, Cosine Similarity), `pandas`, `numpy` |
+| **NLP & Preprocessing**| `NLTK` (PorterStemmer), JSON parsing |
+| **Data Storage** | `pickle` (Serialized ML Artifacts) |
+
+## 🏗️ How the Intelligence Engine Works
 
 ```text
-Raw Data (TMDB 5000)
+Raw Data (TMDB 5000 Movies & Credits)
         │
         ▼
-┌─────────────────────┐
-│   Data Preprocessing │  ← Merge datasets, handle nulls, parse JSON cols
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│  Feature Engineering │  ← Combine: genres + cast + crew + keywords + overview
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│   NLP Vectorization  │  ← TF-IDF on "tags" column → sparse matrix
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│  Similarity Compute  │  ← Cosine similarity → (5000 × 5000) matrix
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│   Model Artifacts    │  ← Pickle: movies_dict.pkl + similarity.pkl
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│   Streamlit App      │  ← Load artifacts → recommend() → display with posters
-└────────┬────────────┘
-         │
-         ▼
-    Heroku Cloud
+Data Preprocessing (Merging, Null Handling, JSON parsing)
+        │
+        ▼
+Feature Engineering (Combining: genres + cast + director + keywords + overview -> "Tags")
+        │
+        ▼
+NLP Vectorization (TF-IDF applied to "Tags" -> Sparse Matrix)
+        │
+        ▼
+Similarity Compute (Cosine Similarity -> 5000x5000 Pre-computed Matrix)
+        │
+        ▼
+Model Artifacts (Exported as similarity.pkl & movies.pkl)
+        │
+        ▼
+Web Application (Loads artifacts -> Takes User Input -> Renders Matches + TMDB Posters)
 ```
 
-## 🧠 How It Works
+<br/>
 
-### 1. Data Preparation
-We use the TMDB 5000 Movie Dataset (movies + credits CSV files). After merging on `movie_id`, we extract and clean:
-- **genres** → parsed from JSON, flattened to list of strings
-- **cast** → top 3 actors, spaces removed to treat as single tokens (e.g., `SamWorthington`)
-- **crew** → director name only
-- **keywords** → extracted and normalized
-- **overview** → tokenized plot summary
+<div align="center">
+  <img src="imagethree.png" alt="CINMATCH Recommendations" width="100%">
+</div>
 
-### 2. Feature Engineering — The "Tags" Column
-All features are concatenated into a single `tags` column per movie:
-```python
-df['tags'] = (
-    df['overview'] + ' ' +
-    df['genres'].apply(lambda x: ' '.join(x)) + ' ' +
-    df['keywords'].apply(lambda x: ' '.join(x)) + ' ' +
-    df['cast'].apply(lambda x: ' '.join(x)) + ' ' +
-    df['crew']
-)
-```
-Stemming is applied via NLTK's `PorterStemmer` to normalize word forms (loved → love, fighting → fight).
+## ⚙️ Local Installation & Setup
 
-### 3. Vectorization
-`TfidfVectorizer` converts the tags into a 5000 × 5000 sparse matrix, capturing term importance across the corpus:
-```python
-from sklearn.feature_extraction.text import TfidfVectorizer
+Want to run the engine locally? Follow these steps:
 
-tfidf = TfidfVectorizer(max_features=5000, stop_words='english')
-vectors = tfidf.fit_transform(df['tags'])
-```
-
-### 4. Cosine Similarity
-We compute pairwise cosine similarity across all movie vectors:
-```python
-from sklearn.metrics.pairwise import cosine_similarity
-
-similarity = cosine_similarity(vectors)
-# Shape: (5000, 5000) — each cell is similarity score between two movies
-```
-
-### 5. Recommendation at Inference
-Given a movie title, we locate its row, sort similarity scores descending, and return the top N:
-```python
-def recommend(movie, n=5):
-    idx = df[df['title'] == movie].index[0]
-    scores = sorted(enumerate(similarity[idx]), key=lambda x: x[1], reverse=True)
-    return [df.iloc[i[0]].title for i in scores[1:n+1]]
-```
-
-## ⚙️ Installation
-
-**Prerequisites**
-- Python 3.9+
-- pip or conda
-
-**Setup**
+**1. Clone the repository**
 ```bash
-# 1. Clone the repository
 git clone https://github.com/anish-devgit/content-recommender-ml.git
 cd content-recommender-ml
+```
 
-# 2. Create and activate virtual environment
+**2. Create and activate a virtual environment**
+```bash
+# macOS / Linux
 python -m venv venv
-source venv/bin/activate        # macOS / Linux
-venv\Scripts\activate           # Windows
+source venv/bin/activate
 
-# 3. Install dependencies
+# Windows
+python -m venv venv
+venv\Scripts\activate
+```
+
+**3. Install dependencies**
+```bash
 pip install -r requirements.txt
+```
 
-# 4. Run the app
+**4. Ensure ML Artifacts are present**
+Make sure `movies.pkl` and `similarity.pkl` are in the root directory. If they are missing, run the Jupyter Notebook (`movie-recommendation-system.ipynb`) to generate them.
+
+**5. Launch the application**
+```bash
 streamlit run app.py
 ```
-🖥️ App will launch at `http://localhost:8501`
+*The app will launch in your browser at `http://localhost:8501`.*
 
-## 🖥️ Usage
-1. Open the app (locally or via the Heroku link)
-2. Type or select any movie from the dropdown
-3. Click "Get Recommendations"
-4. View 5 recommended movies with posters, fetched live from the TMDB API
-
-### 📸 Screenshots
-- Home Screen
-- Recommendations Output
-<!-- Show Image -->
-<!-- Show Image -->
-
-## 🚢 Deployment (Heroku)
-
-**Required Files**
-| File | Content |
-|------|---------|
-| `Procfile` | `web: sh setup.sh && streamlit run app.py` |
-| `setup.sh` | Streamlit server config (headless mode) |
-| `runtime.txt` | `python-3.10.12` |
-| `requirements.txt` | All pinned dependencies |
-
-**Deploy Steps**
-```bash
-# 1. Login to Heroku CLI
-heroku login
-
-# 2. Create a new Heroku app
-heroku create cinematch-app
-
-# 3. Set Python buildpack
-heroku buildpacks:set heroku/python
-
-# 4. Push to Heroku
-git add .
-git commit -m "deploy: initial production release"
-git push heroku main
-
-# 5. Open your live app
-heroku open
-```
-
-**setup.sh**
-```bash
-mkdir -p ~/.streamlit/
-echo "\
-[server]\n\
-headless = true\n\
-port = \$PORT\n\
-enableCORS = false\n\
-" > ~/.streamlit/config.toml
-```
-
-## 🔮 Future Improvements
-- **Hybrid Filtering** — Blend content-based scores with collaborative filtering (SVD via Surprise library)
-- **Transformer Embeddings** — Replace TF-IDF with all-MiniLM-L6-v2 (Sentence-BERT) for deeper semantic understanding
-- **REST API Layer** — Expose `/recommend?movie=Inception&n=5` via FastAPI for programmatic access
-- **User Session Personalization** — Store watch history in Streamlit session state to refine recommendations
-- **A/B Testing Framework** — Compare recommendation strategies with click-through rate tracking
-- **Docker + GitHub Actions CI/CD** — Containerize and automate test + deploy pipeline
-- **Thumbs Up/Down Feedback** — Collect implicit signals to retrain and improve the model
-- **Genre & Year Filters** — Let users constrain recommendations by genre, decade, or language
+## 🔮 Future Roadmap
+- [ ] **Hybrid Recommendation System:** Blend content-based scores with collaborative filtering.
+- [ ] **Transformer-based Embeddings:** Replace TF-IDF with `Sentence-BERT` models for deeper semantic contextual understanding.
+- [ ] **REST API Module:** Build an exposed `/recommend?title=` endpoint using FastAPI for third-party integrations.
+- [ ] **Containerization:** Complete Docker support for easier cloud orchestration.
 
 ## 🤝 Contributing
-Contributions are welcome and appreciated!
-```bash
-# Fork → Clone → Branch
-git checkout -b feature/your-feature-name
-
-# Make changes → Commit (follow Conventional Commits)
-git commit -m "feat: add genre filter to recommendation API"
-
-# Push → Open Pull Request
-git push origin feature/your-feature-name
-```
-Please ensure all PRs include relevant tests and updated documentation.
+Contributions are always welcome! Feel free to open an issue or submit a Pull Request.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📄 License
-This project is licensed under the MIT License — see LICENSE for full details.
-
-## 👤 Author
-**anish-devgit**
-<!-- Show Image -->
-<!-- Show Image -->
-<!-- Show Image -->
+This project is open-source and available under the terms of the **MIT License**.
 
 ---
-
 <p align="center">
-  Found this useful? Give it a ⭐ — it helps others discover the project!
+  <i>Designed and engineered with ❤️ by <a href="https://github.com/anish-devgit">anish-devgit</a>. Developed in PyCharm.</i><br/>
+  <b>If you like this project, consider giving it a ⭐!</b>
 </p>
